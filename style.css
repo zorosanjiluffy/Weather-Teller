@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+
+}
+
+
+
+.card {
+    width: 90%;
+    max-width: 470px;
+    background: linear-gradient(135deg, #5647ca, #842e2e);
+    color: #fff;
+    margin: 100px auto 0;
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.search {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search input {
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    color: #555;
+    padding: 10px 25px;
+    height: 60px;
+    border-radius: 30px;
+    flex: 1;
+    margin-right: 16px;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 3px 3px 3px black;
+
+}
+
+.search button {
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    box-shadow: 3px 3px 3px black;
+
+}
+
+.search button:hover {
+    transform: scale(1.1);
+
+}
+
+.search button:active {
+    width: 55px;
+    height: 55px;
+    background-color: #7a7272;
+}
+
+.fa-solid {
+    font-size: 25px;
+
+}
+
+.weather-icon {
+    width: 180px;
+    height: 180px;
+    margin: 30px 10px;
+}
+
+.weather h2 {
+    font-size: 45px;
+    font-weight: 400;
+    margin-top: 10px;
+
+}
+
+.weather h1 {
+    font-size: 80px;
+    font-weight: 500;
+
+}
+
+.details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-top: 50px;
+
+}
+
+.weather-icon.icon2 {
+    width: 60px;
+    height: 60px;
+    margin: 30px 10px;
+
+
+
+}
+
+.error {
+    text-align: left;
+    margin-left: 10px;
+    font-size: 14px;
+    margin-top: 10px;
+    display: none;
+}
+
+
+.col {
+    display: flex;
+    align-items: center;
+    text-align: left;
+
+}
+
+.col img {
+    width: 40px;
+    margin-right: 10px;
+
+}
+
+.humidity,
+.Wind {
+    margin-top: -6px;
+
+}
+
+.weather {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather-Teller</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/4350f77c0f.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="card">
+        <div class="search">
+            <input type="text" placeholder="Enter city name" spellcheck="false" id="cityInput">
+            <button id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="error">
+            <p>Invalid name</p>
+        </div>
+        <div class="weather">
+            <img src="images/heavy-rain.png" class="weather-icon">
+            <h1 class="temp">22°C</h1>
+            <h2 class="city">New York</h2>
+            <div class="details">
+                <div class="col">
+                    <img src="images/weather.png" class="weather-icon icon2">
+                    <div>
+                        <p class="humidity">50%</p>
+                        <p>Humidity</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="images/wind.png" class="weather-icon icon2">
+                    <div>
+                        <p class="Wind">15 km/h</p>
+                        <p>Wind Speed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const apiKey = "9a35fc8d2ba210ecb0a29471d6244ac0";
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
+
+        const searchInput = document.querySelector(".search input");
+        const searchButton = document.querySelector(".search button");
+        const weatherIcon = document.querySelector(".weather-icon");
+
+        async function checkWeather(city) {
+            const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+            if (response.status == 404) {
+                document.querySelector(".error").style.display = "block";
+                document.querySelector(".weather").style.opacity = "0";
+                setTimeout(() => {
+                    document.querySelector(".weather").style.display = "none";
+                }, 300);
+            } else {
+                const data = await response.json();
+                document.querySelector(".city").innerHTML = data.name;
+                document.querySelector(".temp").innerHTML = data.main.temp + "°C";
+                document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+                document.querySelector(".Wind").innerHTML = data.wind.speed + "Km/h";
+
+                switch (data.weather[0].main) {
+                    case "Clouds":
+                        weatherIcon.src = "images/cloudy.png";
+                        break;
+                    case "Clear":
+                        weatherIcon.src = "images/sunny.png";
+                        break;
+                    case "Rain":
+                        weatherIcon.src = "images/heavy-rain.png";
+                        break;
+                    case "Drizzle":
+                        weatherIcon.src = "images/dizzle.png";
+                        break;
+                    case "Mist":
+                        weatherIcon.src = "images/mist.png";
+                        break;
+                }
+
+                document.querySelector(".weather").style.display = "block";
+                setTimeout(() => {
+                    document.querySelector(".weather").style.opacity = "1";
+                }, 50);
+                document.querySelector(".error").style.display = "none";
+            }
+        }
+
+        searchButton.addEventListener("click", () => {
+            checkWeather(searchInput.value);
+        });
+
+        searchInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                checkWeather(searchInput.value);
+            }
+        });
+    </script>
+</body>
+
+</html>
